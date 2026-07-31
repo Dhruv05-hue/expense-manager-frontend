@@ -28,15 +28,14 @@ export default function CategoryPieChart({ data }) {
   }
 
   const chartData = data.map((item) => ({
-    name: item._id,
-    value: item.totalAmount,
+    name: item.category,
+    value: item.amount,
   }));
 
   return (
     <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-
           <Pie
             data={chartData}
             dataKey="value"
@@ -57,7 +56,6 @@ export default function CategoryPieChart({ data }) {
           />
 
           <Legend />
-
         </PieChart>
       </ResponsiveContainer>
     </div>

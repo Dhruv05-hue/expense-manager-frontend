@@ -18,11 +18,8 @@ export default function DailyExpenseChart({ data }) {
   }
 
   const chartData = data.map((item) => ({
-    date: new Date(item._id).toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "short",
-    }),
-    amount: item.totalAmount,
+    date: item._id,
+    amount: item.total,
   }));
 
   return (
