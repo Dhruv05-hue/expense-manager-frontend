@@ -1,11 +1,11 @@
 import {
   ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
+  BarChart,
+  Bar,
   CartesianGrid,
   Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
 
 export default function DailyExpenseChart({ data }) {
@@ -25,26 +25,62 @@ export default function DailyExpenseChart({ data }) {
   return (
     <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="3 3" />
+        <BarChart
+          data={chartData}
+          margin={{
+            top: 10,
+            right: 10,
+            left: -10,
+            bottom: 5,
+          }}
+        >
+          <CartesianGrid
+            strokeDasharray="4 4"
+            vertical={false}
+            stroke="#E5E7EB"
+          />
 
-          <XAxis dataKey="date" />
+          <XAxis
+            dataKey="date"
+            tick={{
+              fontSize: 12,
+              fill: "#6B7280",
+            }}
+            tickLine={false}
+            axisLine={false}
+          />
 
-          <YAxis />
+          <YAxis
+            tick={{
+              fontSize: 12,
+              fill: "#6B7280",
+            }}
+            tickLine={false}
+            axisLine={false}
+          />
 
           <Tooltip
-            formatter={(value) => [`₹${value}`, "Amount"]}
+            formatter={(value) => [`₹ ${value}`, "Amount"]}
+            cursor={{
+              fill: "#F3F4F6",
+            }}
+            contentStyle={{
+              borderRadius: "12px",
+              border: "1px solid #E5E7EB",
+              boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
+            }}
           />
 
-          <Line
-            type="monotone"
+          <Bar
             dataKey="amount"
-            stroke="#2563eb"
-            strokeWidth={3}
-            dot={{ r: 5 }}
-            activeDot={{ r: 7 }}
+            fill="#2563EB"
+            radius={[10, 10, 0, 0]}
+            maxBarSize={60}
+            animationBegin={100}
+            animationDuration={1200}
+            animationEasing="ease-out"
           />
-        </LineChart>
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );
